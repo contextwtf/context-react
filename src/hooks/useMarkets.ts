@@ -101,3 +101,16 @@ export function useSimulateTrade(
     ...options,
   });
 }
+
+export function useOracle(
+  marketId: string,
+  options?: Omit<UseQueryOptions<any>, "queryKey" | "queryFn">,
+) {
+  const client = useContextClient();
+  return useQuery({
+    queryKey: contextKeys.markets.oracle(marketId),
+    queryFn: () => client.markets.oracle(marketId),
+    enabled: !!marketId,
+    ...options,
+  });
+}

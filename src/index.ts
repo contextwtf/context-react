@@ -4,7 +4,7 @@ export { ContextWalletError } from "./errors.js";
 export { usePortfolio, useBalance, useClaimable, usePortfolioStats } from "./hooks/usePortfolio.js";
 export {
   useMarkets, useMarket, useOrderbook, useQuotes,
-  usePriceHistory, useMarketActivity, useSimulateTrade,
+  usePriceHistory, useMarketActivity, useSimulateTrade, useOracle,
 } from "./hooks/useMarkets.js";
 export { useAccountStatus, useAccountSetup, useDeposit, useWithdraw } from "./hooks/useAccount.js";
 export { useOrders, useOrder } from "./hooks/useOrders.js";
