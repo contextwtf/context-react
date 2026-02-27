@@ -9,4 +9,4 @@ export {
 export { useAccountStatus, useAccountSetup, useDeposit, useWithdraw } from "./hooks/useAccount.js";
 export { useOrders, useOrder } from "./hooks/useOrders.js";
 export { useCreateOrder, useCreateMarketOrder, useCancelOrder, useCancelReplace } from "./hooks/useOrderMutations.js";
-export { useSubmitQuestion, useCreateMarket } from "./hooks/useQuestions.js";
+export { useSubmitQuestion, useSubmitAndWait, useCreateMarket } from "./hooks/useQuestions.js";
