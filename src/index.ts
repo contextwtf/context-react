@@ -3,7 +3,7 @@ export { contextKeys } from "./query-keys.js";
 export { ContextWalletError } from "./errors.js";
 export { usePortfolio, useBalance, useClaimable, usePortfolioStats } from "./hooks/usePortfolio.js";
 export {
-  useMarkets, useMarket, useOrderbook, useQuotes,
+  useMarkets, useSearchMarkets, useMarket, useOrderbook, useQuotes,
   usePriceHistory, useMarketActivity, useSimulateTrade, useOracle,
 } from "./hooks/useMarkets.js";
 export { useAccountStatus, useAccountSetup, useDeposit, useWithdraw } from "./hooks/useAccount.js";

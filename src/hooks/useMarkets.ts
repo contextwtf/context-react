@@ -2,6 +2,7 @@ import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
 import type {
   MarketList, Market, Orderbook, Quotes, PriceHistory,
   ActivityResponse, SimulateResult, SearchMarketsParams,
+  MarketSearchParams, MarketSearchResult,
   GetOrderbookParams, GetPriceHistoryParams, GetActivityParams,
   SimulateTradeParams,
 } from "@contextwtf/sdk";
@@ -16,6 +17,19 @@ export function useMarkets(
   return useQuery({
     queryKey: contextKeys.markets.list(params as Record<string, unknown>),
     queryFn: () => client.markets.list(params),
+    ...options,
+  });
+}
+
+export function useSearchMarkets(
+  params: MarketSearchParams,
+  options?: Omit<UseQueryOptions<MarketSearchResult>, "queryKey" | "queryFn">,
+) {
+  const client = useContextClient();
+  return useQuery({
+    queryKey: contextKeys.markets.search(params.q, params as unknown as Record<string, unknown>),
+    queryFn: () => client.markets.search(params),
+    enabled: !!params.q,
     ...options,
   });
 }

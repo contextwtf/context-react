@@ -7,6 +7,10 @@ export const contextKeys = {
       params
         ? ([PREFIX, "markets", "list", params] as const)
         : ([PREFIX, "markets", "list"] as const),
+    search: (q: string, params?: Record<string, unknown>) =>
+      params
+        ? ([PREFIX, "markets", "search", q, params] as const)
+        : ([PREFIX, "markets", "search", q] as const),
     get: (id: string) => [PREFIX, "markets", "get", id] as const,
     orderbook: (id: string, params?: Record<string, unknown>) =>
       params

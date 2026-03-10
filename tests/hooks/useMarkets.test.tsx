@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContextProvider } from "../../src/provider.js";
 import {
   useMarkets,
+  useSearchMarkets,
   useMarket,
   useOrderbook,
   useQuotes,
@@ -15,6 +16,7 @@ import {
 
 const mockMarkets = {
   list: vi.fn().mockResolvedValue({ markets: [], cursor: null }),
+  search: vi.fn().mockResolvedValue({ markets: [], hasMore: false }),
   get: vi.fn().mockResolvedValue({ id: "m1", question: "Test?" }),
   orderbook: vi.fn().mockResolvedValue({ marketId: "m1", bids: [], asks: [] }),
   quotes: vi.fn().mockResolvedValue({ marketId: "m1", yes: {}, no: {} }),
@@ -64,6 +66,20 @@ describe("useMarkets", () => {
     const { result } = renderHook(() => useMarkets(params), { wrapper: createWrapper() });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(mockMarkets.list).toHaveBeenCalledWith(params);
+  });
+});
+
+describe("useSearchMarkets", () => {
+  beforeEach(() => vi.clearAllMocks());
+  it("searches markets with query", async () => {
+    const params = { q: "bitcoin", limit: 10 };
+    const { result } = renderHook(() => useSearchMarkets(params), { wrapper: createWrapper() });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(mockMarkets.search).toHaveBeenCalledWith(params);
+  });
+  it("does not fetch when q is empty", () => {
+    const { result } = renderHook(() => useSearchMarkets({ q: "" }), { wrapper: createWrapper() });
+    expect(result.current.fetchStatus).toBe("idle");
   });
 });
 
