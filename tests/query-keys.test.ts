@@ -10,6 +10,15 @@ describe("contextKeys", () => {
     ]);
   });
 
+  it("generates market search keys", () => {
+    expect(contextKeys.markets.search("bitcoin")).toEqual([
+      "context", "markets", "search", "bitcoin",
+    ]);
+    expect(contextKeys.markets.search("bitcoin", { limit: 10 })).toEqual([
+      "context", "markets", "search", "bitcoin", { limit: 10 },
+    ]);
+  });
+
   it("generates market detail keys", () => {
     expect(contextKeys.markets.get("abc")).toEqual([
       "context", "markets", "get", "abc",
