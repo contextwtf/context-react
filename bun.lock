@@ -5,7 +5,7 @@
     "": {
       "name": "@contextwtf/react",
       "devDependencies": {
-        "@contextwtf/sdk": "^0.3.4",
+        "@contextwtf/sdk": "^0.3.6",
         "@tanstack/react-query": "^5.0.0",
         "@testing-library/react": "^16.0.0",
         "@types/react": "^19.2.14",
@@ -20,7 +20,7 @@
         "wagmi": "^2.0.0",
       },
       "peerDependencies": {
-        "@contextwtf/sdk": ">=0.3.0",
+        "@contextwtf/sdk": ">=0.3.6",
         "@tanstack/react-query": ">=5.0.0",
         "react": ">=18.0.0",
         "viem": ">=2.0.0",
@@ -45,7 +45,7 @@
 
     "@coinbase/wallet-sdk": ["@coinbase/wallet-sdk@4.3.6", "", { "dependencies": { "@noble/hashes": "1.4.0", "clsx": "1.2.1", "eventemitter3": "5.0.1", "idb-keyval": "6.2.1", "ox": "0.6.9", "preact": "10.24.2", "viem": "^2.27.2", "zustand": "5.0.3" } }, "sha512-4q8BNG1ViL4mSAAvPAtpwlOs1gpC+67eQtgIwNvT3xyeyFFd+guwkc8bcX5rTmQhXpqnhzC4f0obACbP9CqMSA=="],
 
-    "@contextwtf/sdk": ["@contextwtf/sdk@0.3.4", "", { "dependencies": { "viem": "^2.23.2" } }, "sha512-aBSGJGxBuRTE6mZgla2ltPiPshq9FLe3y/AaIQY/jlYUhIdntWLcR60iA+311eJNuWNk8dUC4ZrrSc9TO/NtCA=="],
+    "@contextwtf/sdk": ["@contextwtf/sdk@0.3.6", "", { "dependencies": { "viem": "^2.23.2" } }, "sha512-z20FJH9MCqKDN4YO1HUZ54Wsl3j2Sj904IRftIfsdxilrQL18CV0Lq3mt2hKQr/F2x5Vz9edXLNAxyFueiyC3g=="],
 
     "@csstools/color-helpers": ["@csstools/color-helpers@5.1.0", "", {}, "sha512-S11EXWJyy0Mz5SYvRmY8nJYTFFd1LCNV+7cXyAgQtOOuzb4EsgfqDufL+9esx72/eLhsRdGZwaldu/h+E4t4BA=="],
 
