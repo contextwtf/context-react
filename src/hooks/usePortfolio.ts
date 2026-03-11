@@ -5,6 +5,8 @@ import type {
   ClaimableResponse,
   PortfolioStats,
   GetPortfolioParams,
+  PositionList,
+  GetPositionsParams,
 } from "@contextwtf/sdk";
 import type { Address } from "viem";
 import { useContextClient } from "../provider.js";
@@ -55,6 +57,19 @@ export function usePortfolioStats(
   return useQuery({
     queryKey: contextKeys.portfolio.stats(address),
     queryFn: () => client.portfolio.stats(address),
+    ...options,
+  });
+}
+
+export function usePositions(
+  address?: Address,
+  params?: GetPositionsParams,
+  options?: Omit<UseQueryOptions<PositionList>, "queryKey" | "queryFn">,
+) {
+  const client = useContextClient();
+  return useQuery({
+    queryKey: contextKeys.portfolio.positions(address, params as Record<string, unknown>),
+    queryFn: () => client.portfolio.positions(address, params),
     ...options,
   });
 }
