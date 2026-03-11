@@ -4,7 +4,7 @@ import type {
   ActivityResponse, SimulateResult, SearchMarketsParams,
   MarketSearchParams, MarketSearchResult,
   GetOrderbookParams, GetPriceHistoryParams, GetActivityParams,
-  SimulateTradeParams,
+  SimulateTradeParams, OracleQuoteLatest,
 } from "@contextwtf/sdk";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
@@ -124,6 +124,19 @@ export function useOracle(
   return useQuery({
     queryKey: contextKeys.markets.oracle(marketId),
     queryFn: () => client.markets.oracle(marketId),
+    enabled: !!marketId,
+    ...options,
+  });
+}
+
+export function useLatestOracleQuote(
+  marketId: string,
+  options?: Omit<UseQueryOptions<OracleQuoteLatest>, "queryKey" | "queryFn">,
+) {
+  const client = useContextClient();
+  return useQuery({
+    queryKey: contextKeys.markets.latestOracleQuote(marketId),
+    queryFn: () => client.markets.latestOracleQuote(marketId),
     enabled: !!marketId,
     ...options,
   });

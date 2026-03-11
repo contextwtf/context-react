@@ -28,6 +28,7 @@ export const contextKeys = {
     simulate: (params: Record<string, unknown>) =>
       [PREFIX, "markets", "simulate", params] as const,
     oracle: (id: string) => [PREFIX, "markets", "oracle", id] as const,
+    latestOracleQuote: (id: string) => [PREFIX, "markets", "latestOracleQuote", id] as const,
   },
   orders: {
     all: [PREFIX, "orders"] as const,
@@ -55,6 +56,10 @@ export const contextKeys = {
       address
         ? ([PREFIX, "portfolio", "stats", address] as const)
         : ([PREFIX, "portfolio", "stats"] as const),
+    positions: (address?: string, params?: Record<string, unknown>) =>
+      address
+        ? ([PREFIX, "portfolio", "positions", address, ...(params ? [params] : [])] as const)
+        : ([PREFIX, "portfolio", "positions"] as const),
   },
   account: {
     all: [PREFIX, "account"] as const,

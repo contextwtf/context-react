@@ -30,7 +30,7 @@ export function ContextProvider({
       apiKey,
       rpcUrl,
       baseUrl,
-      ...(walletClient ? { signer: { walletClient } } : {}),
+      ...(walletClient ? { signer: { walletClient: walletClient as any } } : {}),
     });
   }, [apiKey, rpcUrl, baseUrl, walletClient, address]);
 

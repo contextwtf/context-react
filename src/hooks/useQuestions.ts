@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient, type UseMutationOptions } from "@tanstack/react-query";
-import type { SubmitQuestionResult, CreateMarketResult, QuestionSubmission, SubmitAndWaitOptions } from "@contextwtf/sdk";
+import type { SubmitQuestionResult, CreateMarketResult, QuestionSubmission, SubmitAndWaitOptions, AgentSubmitMarketDraft } from "@contextwtf/sdk";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 
@@ -43,6 +43,39 @@ export function useCreateMarket(
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (questionId: string) => client.markets.create(questionId),
+    retry: false,
+    onSuccess: (...args) => {
+      queryClient.invalidateQueries({ queryKey: contextKeys.markets.all });
+      options?.onSuccess?.(...args);
+    },
+    ...options,
+  });
+}
+
+export function useAgentSubmit(
+  options?: Omit<UseMutationOptions<SubmitQuestionResult, Error, AgentSubmitMarketDraft>, "mutationFn">,
+) {
+  const client = useContextClient();
+  return useMutation({
+    mutationFn: (draft: AgentSubmitMarketDraft) => client.questions.agentSubmit(draft),
+    retry: false,
+    ...options,
+  });
+}
+
+interface AgentSubmitAndWaitInput {
+  draft: AgentSubmitMarketDraft;
+  options?: SubmitAndWaitOptions;
+}
+
+export function useAgentSubmitAndWait(
+  options?: Omit<UseMutationOptions<QuestionSubmission, Error, AgentSubmitAndWaitInput>, "mutationFn">,
+) {
+  const client = useContextClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (input: AgentSubmitAndWaitInput) =>
+      client.questions.agentSubmitAndWait(input.draft, input.options),
     retry: false,
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: contextKeys.markets.all });
