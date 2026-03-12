@@ -5,7 +5,7 @@ import type {
   MarketSearchParams, MarketSearchResult,
   GetOrderbookParams, GetPriceHistoryParams, GetActivityParams,
   SimulateTradeParams, OracleQuoteLatest,
-} from "@contextwtf/sdk";
+} from "context-markets";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 
