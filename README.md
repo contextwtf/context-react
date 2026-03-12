@@ -1,10 +1,9 @@
 <p align="center">
-  <img src="https://mainnet.contextcdn.com/d9830b941541ef49ab92e4afe7a1110ffb883bf9c4af42570dbcb09bf17233e8" alt="Context" width="100%" />
+  <img src="https://mainnet.contextcdn.com/ced823d63df9dff0390d9ad0a4e1ad3905dd199a6c50758c18a5c92a203adbd7" alt="Context" width="100%" />
 </p>
 
-<p align="center">
-  <strong>React hooks for <a href="https://context.markets">Context Markets</a> — built on <code>@contextwtf/sdk</code> and TanStack Query.</strong>
-</p>
+<h1 align="center">Context React</h1>
+<p align="center">React hooks for <a href="https://context.markets">Context Markets</a> — built on <code>context-markets</code> and TanStack Query.</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@contextwtf/react"><img src="https://img.shields.io/npm/v/@contextwtf/react" alt="npm" /></a>
@@ -15,11 +14,11 @@
 ## Install
 
 ```bash
-npm install @contextwtf/react @contextwtf/sdk @tanstack/react-query wagmi viem
+npm install @contextwtf/react context-markets @tanstack/react-query wagmi viem
 # or
-yarn add @contextwtf/react @contextwtf/sdk @tanstack/react-query wagmi viem
+yarn add @contextwtf/react context-markets @tanstack/react-query wagmi viem
 # or
-pnpm add @contextwtf/react @contextwtf/sdk @tanstack/react-query wagmi viem
+pnpm add @contextwtf/react context-markets @tanstack/react-query wagmi viem
 ```
 
 ## Quick Start
@@ -146,7 +145,7 @@ function MarketList() {
 | `@tanstack/react-query` | >= 5.0.0 |
 | `wagmi` | >= 2.0.0 |
 | `viem` | >= 2.0.0 |
-| `@contextwtf/sdk` | >= 0.4.0 |
+| `context-markets` | >= 0.4.0 |
 
 ## Development
 
@@ -165,7 +164,7 @@ Full hook reference and usage guides at **[docs.context.markets](https://docs.co
 
 | Package | Description |
 |---------|-------------|
-| **[@contextwtf/sdk](https://github.com/contextwtf/context-sdk)** | TypeScript SDK for trading |
+| **[context-markets](https://github.com/contextwtf/context-sdk)** | TypeScript SDK for trading |
 | **[@contextwtf/react](https://github.com/contextwtf/context-react)** | React hooks for market data and trading |
 | **[@contextwtf/mcp](https://github.com/contextwtf/context-mcp)** | MCP server for AI agents |
 | **[@contextwtf/cli](https://github.com/contextwtf/context-cli)** | CLI for trading from the terminal |
