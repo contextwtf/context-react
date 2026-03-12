@@ -2,7 +2,7 @@ import {
   useQuery, useMutation, useQueryClient,
   type UseQueryOptions, type UseMutationOptions,
 } from "@tanstack/react-query";
-import type { WalletStatus, WalletSetupResult, GaslessOperatorResult, GaslessDepositResult } from "@contextwtf/sdk";
+import type { WalletStatus, WalletSetupResult, GaslessOperatorResult, GaslessDepositResult } from "context-markets";
 import type { Hex } from "viem";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";

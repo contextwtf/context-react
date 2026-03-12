@@ -4,7 +4,7 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
-import { ContextClient } from "@contextwtf/sdk";
+import { ContextClient } from "context-markets";
 import { useWalletClient, useAccount } from "wagmi";
 
 interface ContextProviderProps {

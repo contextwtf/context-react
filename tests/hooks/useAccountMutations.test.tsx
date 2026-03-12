@@ -19,7 +19,7 @@ vi.mock("wagmi", () => ({
   useAccount: vi.fn(() => ({ address: "0x123" })),
 }));
 
-vi.mock("@contextwtf/sdk", () => ({
+vi.mock("context-markets", () => ({
   ContextClient: vi.fn().mockImplementation(() => ({
     markets: {}, orders: {}, portfolio: {}, questions: {}, account: mockAccount, address: "0x123",
   })),

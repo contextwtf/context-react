@@ -15,7 +15,7 @@ vi.mock("wagmi", () => ({
   useAccount: vi.fn(() => ({ address: undefined })),
 }));
 
-vi.mock("@contextwtf/sdk", () => ({
+vi.mock("context-markets", () => ({
   ContextClient: vi.fn().mockImplementation(() => ({
     markets: {}, orders: mockOrders, portfolio: {}, questions: {}, account: {}, address: null,
   })),

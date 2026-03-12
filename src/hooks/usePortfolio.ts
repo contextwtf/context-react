@@ -7,7 +7,7 @@ import type {
   GetPortfolioParams,
   PositionList,
   GetPositionsParams,
-} from "@contextwtf/sdk";
+} from "context-markets";
 import type { Address } from "viem";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
