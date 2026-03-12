@@ -4,11 +4,12 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
-import { ContextClient } from "@contextwtf/sdk";
+import { ContextClient, type ChainOption } from "context-markets";
 import { useWalletClient, useAccount } from "wagmi";
 
 interface ContextProviderProps {
   apiKey: string;
+  chain?: ChainOption;
   rpcUrl?: string;
   baseUrl?: string;
   children: ReactNode;
@@ -18,6 +19,7 @@ const ContextClientContext = createContext<ContextClient | null>(null);
 
 export function ContextProvider({
   apiKey,
+  chain,
   rpcUrl,
   baseUrl,
   children,
@@ -28,11 +30,12 @@ export function ContextProvider({
   const client = useMemo(() => {
     return new ContextClient({
       apiKey,
+      chain,
       rpcUrl,
       baseUrl,
       ...(walletClient ? { signer: { walletClient: walletClient as any } } : {}),
     });
-  }, [apiKey, rpcUrl, baseUrl, walletClient, address]);
+  }, [apiKey, chain, rpcUrl, baseUrl, walletClient, address]);
 
   return (
     <ContextClientContext.Provider value={client}>

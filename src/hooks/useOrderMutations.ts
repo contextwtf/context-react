@@ -2,7 +2,7 @@ import { useMutation, useQueryClient, type UseMutationOptions } from "@tanstack/
 import type {
   PlaceOrderRequest, PlaceMarketOrderRequest, CreateOrderResult,
   CancelResult, CancelReplaceResult,
-} from "@contextwtf/sdk";
+} from "context-markets";
 import type { Hex } from "viem";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";

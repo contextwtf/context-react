@@ -1,5 +1,5 @@
 import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
-import type { OrderList, Order, GetOrdersParams } from "@contextwtf/sdk";
+import type { OrderList, Order, GetOrdersParams } from "context-markets";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 

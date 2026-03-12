@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient, type UseMutationOptions } from "@tanstack/react-query";
-import type { SubmitQuestionResult, CreateMarketResult, QuestionSubmission, SubmitAndWaitOptions, AgentSubmitMarketDraft } from "@contextwtf/sdk";
+import type { SubmitQuestionResult, CreateMarketResult, QuestionSubmission, SubmitAndWaitOptions, AgentSubmitMarketDraft } from "context-markets";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 
