@@ -15,9 +15,15 @@
 
 ```bash
 npm install @contextwtf/react context-markets @tanstack/react-query wagmi viem
+# or
+yarn add @contextwtf/react context-markets @tanstack/react-query wagmi viem
+# or
+pnpm add @contextwtf/react context-markets @tanstack/react-query wagmi viem
 ```
 
 ## Quick Start
+
+### 1. Wrap your app with providers
 
 ```tsx
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -40,6 +46,8 @@ function App({ children }: { children: React.ReactNode }) {
 }
 ```
 
+### 2. Use hooks
+
 ```tsx
 import { useMarkets, useQuotes } from "@contextwtf/react"
 
@@ -57,6 +65,24 @@ function MarketList() {
   )
 }
 ```
+
+## Available Hooks
+
+**Markets** — `useMarkets` · `useSearchMarkets` · `useMarket` · `useOrderbook` · `useQuotes` · `usePriceHistory` · `useMarketActivity` · `useSimulateTrade` · `useOracle` · `useLatestOracleQuote`
+
+**Orders** — `useOrders` · `useOrder` · `useCreateOrder` · `useCreateMarketOrder` · `useCancelOrder` · `useCancelReplace`
+
+**Portfolio** — `usePortfolio` · `usePositions` · `useBalance` · `useClaimable` · `usePortfolioStats`
+
+**Account** — `useAccountStatus` · `useAccountSetup` · `useDeposit` · `useWithdraw`
+
+**Questions** — `useSubmitQuestion` · `useSubmitAndWait` · `useCreateMarket` · `useAgentSubmit` · `useAgentSubmitAndWait`
+
+**Utilities** — `ContextProvider` · `useContextClient` · `contextKeys` · `ContextWalletError`
+
+## Peer Dependencies
+
+`react` >= 18 · `@tanstack/react-query` >= 5 · `wagmi` >= 2 · `viem` >= 2 · `context-markets` >= 0.4
 
 ## Documentation
 
