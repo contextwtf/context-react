@@ -15,15 +15,9 @@
 
 ```bash
 npm install @contextwtf/react context-markets @tanstack/react-query wagmi viem
-# or
-yarn add @contextwtf/react context-markets @tanstack/react-query wagmi viem
-# or
-pnpm add @contextwtf/react context-markets @tanstack/react-query wagmi viem
 ```
 
 ## Quick Start
-
-### 1. Wrap your app with providers
 
 ```tsx
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -46,8 +40,6 @@ function App({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### 2. Use hooks
-
 ```tsx
 import { useMarkets, useQuotes } from "@contextwtf/react"
 
@@ -66,99 +58,11 @@ function MarketList() {
 }
 ```
 
-## Hook Reference
-
-### Markets (queries)
-
-| Hook | Description |
-|------|-------------|
-| `useMarkets(params?)` | Search and filter markets |
-| `useSearchMarkets(params)` | Full-text search across markets |
-| `useMarket(marketId)` | Get a single market |
-| `useOrderbook(marketId, params?)` | Get bid/ask ladder |
-| `useQuotes(marketId)` | Get bid/ask/last prices |
-| `usePriceHistory(marketId, params?)` | Historical price data |
-| `useMarketActivity(marketId, params?)` | Market event feed |
-| `useSimulateTrade(marketId, params)` | Preview trade execution |
-| `useOracle(marketId)` | Oracle resolution status |
-| `useLatestOracleQuote(marketId)` | Latest oracle quote for a market |
-
-### Orders (queries)
-
-| Hook | Description |
-|------|-------------|
-| `useOrders(params?)` | List orders with filters |
-| `useOrder(orderId)` | Get a single order |
-
-### Orders (mutations)
-
-| Hook | Description |
-|------|-------------|
-| `useCreateOrder()` | Place a signed limit order |
-| `useCreateMarketOrder()` | Place a market order |
-| `useCancelOrder()` | Cancel by nonce |
-| `useCancelReplace()` | Atomic cancel + replace |
-
-### Portfolio (queries)
-
-| Hook | Description |
-|------|-------------|
-| `usePortfolio(address?, params?)` | Positions across markets |
-| `usePositions(address?, params?)` | List positions with filters |
-| `useBalance(address?)` | TUSD + token balances |
-| `useClaimable(address?)` | Claimable winnings |
-| `usePortfolioStats(address?)` | Portfolio value summary |
-
-### Account
-
-| Hook | Description |
-|------|-------------|
-| `useAccountStatus()` | Check wallet approval status |
-| `useAccountSetup()` | Approve contracts (gasless-first) |
-| `useDeposit()` | Deposit TUSD (gasless-first) |
-| `useWithdraw()` | Withdraw TUSD |
-
-### Questions (mutations)
-
-| Hook | Description |
-|------|-------------|
-| `useSubmitQuestion()` | Submit a prediction question |
-| `useSubmitAndWait()` | Submit + poll until processed |
-| `useCreateMarket()` | Create a market from a question |
-| `useAgentSubmit()` | Submit a pre-built market draft (for agents) |
-| `useAgentSubmitAndWait()` | Submit a market draft + poll until processed |
-
-### Utilities
-
-| Export | Description |
-|--------|-------------|
-| `ContextProvider` | Provider component (wraps SDK client) |
-| `useContextClient()` | Access the raw `ContextClient` instance |
-| `contextKeys` | TanStack Query key factory for manual invalidation |
-| `ContextWalletError` | Error class for wallet-required operations |
-
-## Peer Dependencies
-
-| Package | Version |
-|---------|---------|
-| `react` | >= 18.0.0 |
-| `@tanstack/react-query` | >= 5.0.0 |
-| `wagmi` | >= 2.0.0 |
-| `viem` | >= 2.0.0 |
-| `context-markets` | >= 0.4.0 |
-
-## Development
-
-```bash
-bun install          # Install dependencies
-bun run build        # Build ESM + types
-bun run typecheck    # Type check
-bun run test         # Run tests
-```
-
 ## Documentation
 
-Full hook reference and usage guides at **[docs.context.markets](https://docs.context.markets/agents/react-sdk)**.
+- **[React SDK Guide](https://docs.context.markets/agents/react-sdk)** — setup, providers, and first component
+- **[Hooks Reference](https://docs.context.markets/agents/react-sdk/hooks-reference)** — full list of hooks and parameters
+- **[Best Practices](https://docs.context.markets/agents/react-sdk/best-practices)** — patterns, error handling, and tips
 
 ## Ecosystem
 
