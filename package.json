@@ -1,6 +1,26 @@
 {
   "name": "@contextwtf/react",
   "version": "0.1.0",
+  "description": "React hooks for Context Markets — built on @contextwtf/sdk and TanStack Query",
+  "license": "MIT",
+  "author": "Context",
+  "homepage": "https://docs.context.markets/agents/react-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/contextwtf/context-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/contextwtf/context-react/issues"
+  },
+  "keywords": [
+    "prediction-markets",
+    "context",
+    "react",
+    "hooks",
+    "wagmi",
+    "web3",
+    "tanstack-query"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

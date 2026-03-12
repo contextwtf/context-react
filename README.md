@@ -1,15 +1,24 @@
-# Context React
+<p align="center">
+  <img src="https://mainnet.contextcdn.com/ced823d63df9dff0390d9ad0a4e1ad3905dd199a6c50758c18a5c92a203adbd7" alt="Context" width="100%" />
+</p>
 
-[![npm](https://img.shields.io/npm/v/@contextwtf/react)](https://www.npmjs.com/package/@contextwtf/react)
+<h1 align="center">Context React</h1>
+<p align="center">React hooks for <a href="https://context.markets">Context Markets</a> — built on <code>context-markets</code> and TanStack Query.</p>
 
-React hooks for [Context Markets](https://context.markets) — built on `@contextwtf/sdk` and TanStack Query.
-
-For the full quickstart guide and hook reference, visit [docs.context.markets](https://docs.context.markets).
+<p align="center">
+  <a href="https://www.npmjs.com/package/@contextwtf/react"><img src="https://img.shields.io/npm/v/@contextwtf/react" alt="npm" /></a>
+  <a href="https://github.com/contextwtf/context-react/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /></a>
+  <a href="https://discord.gg/RVmzZsAyM4"><img src="https://img.shields.io/badge/Discord-Join-7289da" alt="Discord" /></a>
+</p>
 
 ## Install
 
 ```bash
-npm install @contextwtf/react @contextwtf/sdk @tanstack/react-query wagmi viem
+npm install @contextwtf/react context-markets @tanstack/react-query wagmi viem
+# or
+yarn add @contextwtf/react context-markets @tanstack/react-query wagmi viem
+# or
+pnpm add @contextwtf/react context-markets @tanstack/react-query wagmi viem
 ```
 
 ## Quick Start
@@ -64,6 +73,7 @@ function MarketList() {
 | Hook | Description |
 |------|-------------|
 | `useMarkets(params?)` | Search and filter markets |
+| `useSearchMarkets(params)` | Full-text search across markets |
 | `useMarket(marketId)` | Get a single market |
 | `useOrderbook(marketId, params?)` | Get bid/ask ladder |
 | `useQuotes(marketId)` | Get bid/ask/last prices |
@@ -71,6 +81,7 @@ function MarketList() {
 | `useMarketActivity(marketId, params?)` | Market event feed |
 | `useSimulateTrade(marketId, params)` | Preview trade execution |
 | `useOracle(marketId)` | Oracle resolution status |
+| `useLatestOracleQuote(marketId)` | Latest oracle quote for a market |
 
 ### Orders (queries)
 
@@ -93,6 +104,7 @@ function MarketList() {
 | Hook | Description |
 |------|-------------|
 | `usePortfolio(address?, params?)` | Positions across markets |
+| `usePositions(address?, params?)` | List positions with filters |
 | `useBalance(address?)` | TUSD + token balances |
 | `useClaimable(address?)` | Claimable winnings |
 | `usePortfolioStats(address?)` | Portfolio value summary |
@@ -113,6 +125,8 @@ function MarketList() {
 | `useSubmitQuestion()` | Submit a prediction question |
 | `useSubmitAndWait()` | Submit + poll until processed |
 | `useCreateMarket()` | Create a market from a question |
+| `useAgentSubmit()` | Submit a pre-built market draft (for agents) |
+| `useAgentSubmitAndWait()` | Submit a market draft + poll until processed |
 
 ### Utilities
 
@@ -131,7 +145,7 @@ function MarketList() {
 | `@tanstack/react-query` | >= 5.0.0 |
 | `wagmi` | >= 2.0.0 |
 | `viem` | >= 2.0.0 |
-| `@contextwtf/sdk` | >= 0.3.0 |
+| `context-markets` | >= 0.4.0 |
 
 ## Development
 
@@ -141,3 +155,22 @@ bun run build        # Build ESM + types
 bun run typecheck    # Type check
 bun run test         # Run tests
 ```
+
+## Documentation
+
+Full hook reference and usage guides at **[docs.context.markets](https://docs.context.markets/agents/react-sdk)**.
+
+## Ecosystem
+
+| Package | Description |
+|---------|-------------|
+| **[context-markets](https://github.com/contextwtf/context-sdk)** | TypeScript SDK for trading |
+| **[@contextwtf/react](https://github.com/contextwtf/context-react)** | React hooks for market data and trading |
+| **[@contextwtf/mcp](https://github.com/contextwtf/context-mcp)** | MCP server for AI agents |
+| **[@contextwtf/cli](https://github.com/contextwtf/context-cli)** | CLI for trading from the terminal |
+| **[context-skills](https://github.com/contextwtf/context-skills)** | AI agent skill files |
+| **[context-plugin](https://github.com/contextwtf/context-plugin)** | Claude Code plugin |
+
+## License
+
+MIT — see [LICENSE](./LICENSE) for details.
