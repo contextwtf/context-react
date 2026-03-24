@@ -1,3 +1,4 @@
+/** @deprecated Use SDK and query errors directly instead of ContextWalletError. */
 export class ContextWalletError extends Error {
   override name = "ContextWalletError";
 

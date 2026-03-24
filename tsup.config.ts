@@ -10,6 +10,6 @@ export default defineConfig({
     "viem",
     "wagmi",
     "@tanstack/react-query",
-    "@contextwtf/sdk",
+    "context-markets",
   ],
 });

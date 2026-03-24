@@ -32,31 +32,31 @@ describe("contextKeys", () => {
   });
 
   it("generates order keys", () => {
-    expect(contextKeys.orders.list()).toEqual(["context", "orders", "list"]);
-    expect(contextKeys.orders.get("id1")).toEqual([
-      "context", "orders", "get", "id1",
+    expect(contextKeys.orders.list()).toEqual(["context", "orders", null, "list"]);
+    expect(contextKeys.orders.get("0x1", "id1")).toEqual([
+      "context", "orders", "0x1", "get", "id1",
     ]);
   });
 
   it("generates portfolio keys", () => {
     expect(contextKeys.portfolio.get("0x1")).toEqual([
-      "context", "portfolio", "get", "0x1",
+      "context", "portfolio", "0x1", "get",
     ]);
     expect(contextKeys.portfolio.balance()).toEqual([
-      "context", "portfolio", "balance",
+      "context", "portfolio", null, "balance",
     ]);
   });
 
   it("generates account keys", () => {
     expect(contextKeys.account.status()).toEqual([
-      "context", "account", "status",
+      "context", "account", null, "status",
     ]);
   });
 
   it("supports module-level invalidation", () => {
     expect(contextKeys.markets.all).toEqual(["context", "markets"]);
-    expect(contextKeys.orders.all).toEqual(["context", "orders"]);
-    expect(contextKeys.portfolio.all).toEqual(["context", "portfolio"]);
+    expect(contextKeys.orders.all()).toEqual(["context", "orders", null]);
+    expect(contextKeys.portfolio.all()).toEqual(["context", "portfolio", null]);
   });
 });
 

@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 import { createElement, type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContextProvider, useContextClient } from "../src/index.js";
-import { ContextClient } from "@contextwtf/sdk";
+import { ContextClient } from "context-markets";
 import { useWalletClient, useAccount } from "wagmi";
 
 // Mock wagmi hooks
@@ -13,7 +13,7 @@ vi.mock("wagmi", () => ({
 }));
 
 // Mock the SDK
-vi.mock("@contextwtf/sdk", () => ({
+vi.mock("context-markets", () => ({
   ContextClient: vi.fn().mockImplementation((opts: any) => ({
     markets: {},
     orders: {},

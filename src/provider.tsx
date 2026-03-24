@@ -4,7 +4,12 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
-import { ContextClient, type ChainOption } from "context-markets";
+import {
+  ContextClient,
+  type ChainOption,
+  type SignerInput,
+} from "context-markets";
+import type { Address } from "viem";
 import { useWalletClient, useAccount } from "wagmi";
 
 interface ContextProviderProps {
@@ -15,7 +20,13 @@ interface ContextProviderProps {
   children: ReactNode;
 }
 
-const ContextClientContext = createContext<ContextClient | null>(null);
+interface ContextValue {
+  client: ContextClient;
+  address: Address | null;
+  chain: ChainOption;
+}
+
+const ContextClientContext = createContext<ContextValue | null>(null);
 
 export function ContextProvider({
   apiKey,
@@ -26,30 +37,54 @@ export function ContextProvider({
 }: ContextProviderProps) {
   const { data: walletClient } = useWalletClient();
   const { address } = useAccount();
+  const resolvedChain = chain ?? "mainnet";
 
   const client = useMemo(() => {
+    const signer = walletClient
+      ? ({
+          walletClient: walletClient as unknown as SignerInput extends {
+            walletClient: infer TWalletClient;
+          }
+            ? TWalletClient
+            : never,
+        } satisfies SignerInput)
+      : undefined;
+
     return new ContextClient({
       apiKey,
-      chain,
+      chain: resolvedChain,
       rpcUrl,
       baseUrl,
-      ...(walletClient ? { signer: { walletClient: walletClient as any } } : {}),
+      ...(signer ? { signer } : {}),
     });
-  }, [apiKey, chain, rpcUrl, baseUrl, walletClient, address]);
+  }, [apiKey, resolvedChain, rpcUrl, baseUrl, walletClient]);
+
+  const contextValue = useMemo(
+    () => ({
+      client,
+      address: address ?? null,
+      chain: resolvedChain,
+    }),
+    [client, address, resolvedChain],
+  );
 
   return (
-    <ContextClientContext.Provider value={client}>
+    <ContextClientContext.Provider value={contextValue}>
       {children}
     </ContextClientContext.Provider>
   );
 }
 
-export function useContextClient(): ContextClient {
-  const client = useContext(ContextClientContext);
-  if (!client) {
+export function useContextState(): ContextValue {
+  const context = useContext(ContextClientContext);
+  if (!context) {
     throw new Error(
       "useContextClient must be used within a <ContextProvider>",
     );
   }
-  return client;
+  return context;
+}
+
+export function useContextClient(): ContextClient {
+  return useContextState().client;
 }

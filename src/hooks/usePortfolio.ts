@@ -9,7 +9,7 @@ import type {
   GetPositionsParams,
 } from "context-markets";
 import type { Address } from "viem";
-import { useContextClient } from "../provider.js";
+import { useContextClient, useContextState } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 
 export function usePortfolio(
@@ -18,9 +18,16 @@ export function usePortfolio(
   options?: Omit<UseQueryOptions<Portfolio>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address: connectedAddress, chain } = useContextState();
+  const scopedAddress = address ?? connectedAddress;
+
   return useQuery({
-    queryKey: contextKeys.portfolio.get(address, params as Record<string, unknown>),
-    queryFn: () => client.portfolio.get(address, params),
+    queryKey: contextKeys.portfolio.get(
+      scopedAddress,
+      chain,
+      params as Record<string, unknown> | undefined,
+    ),
+    queryFn: () => client.portfolio.get(scopedAddress ?? undefined, params),
     ...options,
   });
 }
@@ -30,9 +37,12 @@ export function useBalance(
   options?: Omit<UseQueryOptions<Balance>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address: connectedAddress, chain } = useContextState();
+  const scopedAddress = address ?? connectedAddress;
+
   return useQuery({
-    queryKey: contextKeys.portfolio.balance(address),
-    queryFn: () => client.portfolio.balance(address),
+    queryKey: contextKeys.portfolio.balance(scopedAddress, chain),
+    queryFn: () => client.portfolio.balance(scopedAddress ?? undefined),
     ...options,
   });
 }
@@ -42,9 +52,12 @@ export function useClaimable(
   options?: Omit<UseQueryOptions<ClaimableResponse>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address: connectedAddress, chain } = useContextState();
+  const scopedAddress = address ?? connectedAddress;
+
   return useQuery({
-    queryKey: contextKeys.portfolio.claimable(address),
-    queryFn: () => client.portfolio.claimable(address),
+    queryKey: contextKeys.portfolio.claimable(scopedAddress, chain),
+    queryFn: () => client.portfolio.claimable(scopedAddress ?? undefined),
     ...options,
   });
 }
@@ -54,9 +67,12 @@ export function usePortfolioStats(
   options?: Omit<UseQueryOptions<PortfolioStats>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address: connectedAddress, chain } = useContextState();
+  const scopedAddress = address ?? connectedAddress;
+
   return useQuery({
-    queryKey: contextKeys.portfolio.stats(address),
-    queryFn: () => client.portfolio.stats(address),
+    queryKey: contextKeys.portfolio.stats(scopedAddress, chain),
+    queryFn: () => client.portfolio.stats(scopedAddress ?? undefined),
     ...options,
   });
 }
@@ -67,9 +83,16 @@ export function usePositions(
   options?: Omit<UseQueryOptions<PositionList>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address: connectedAddress, chain } = useContextState();
+  const scopedAddress = address ?? connectedAddress;
+
   return useQuery({
-    queryKey: contextKeys.portfolio.positions(address, params as Record<string, unknown>),
-    queryFn: () => client.portfolio.positions(address, params),
+    queryKey: contextKeys.portfolio.positions(
+      scopedAddress,
+      chain,
+      params as Record<string, unknown> | undefined,
+    ),
+    queryFn: () => client.portfolio.positions(scopedAddress ?? undefined, params),
     ...options,
   });
 }

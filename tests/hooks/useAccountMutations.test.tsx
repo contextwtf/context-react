@@ -7,9 +7,7 @@ import { useAccountSetup, useDeposit, useWithdraw } from "../../src/hooks/useAcc
 
 const mockAccount = {
   status: vi.fn(),
-  gaslessSetup: vi.fn(),
   setup: vi.fn(),
-  gaslessDeposit: vi.fn(),
   deposit: vi.fn(),
   withdraw: vi.fn().mockResolvedValue("0xtxhash"),
 };
@@ -19,7 +17,7 @@ vi.mock("wagmi", () => ({
   useAccount: vi.fn(() => ({ address: "0x123" })),
 }));
 
-vi.mock("@contextwtf/sdk", () => ({
+vi.mock("context-markets", () => ({
   ContextClient: vi.fn().mockImplementation(() => ({
     markets: {}, orders: {}, portfolio: {}, questions: {}, account: mockAccount, address: "0x123",
   })),
@@ -38,20 +36,10 @@ function createWrapper() {
 describe("useAccountSetup", () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it("tries gasless first, succeeds", async () => {
-    mockAccount.gaslessSetup.mockResolvedValue({ success: true, txHash: "0x1" });
-    const { result } = renderHook(() => useAccountSetup(), { wrapper: createWrapper() });
-    await act(() => result.current.mutateAsync());
-    expect(mockAccount.gaslessSetup).toHaveBeenCalled();
-    expect(mockAccount.setup).not.toHaveBeenCalled();
-  });
-
-  it("falls back to direct tx when gasless fails", async () => {
-    mockAccount.gaslessSetup.mockRejectedValue(new Error("relay down"));
+  it("calls account.setup", async () => {
     mockAccount.setup.mockResolvedValue({ usdcApprovalTx: "0x1", operatorApprovalTx: "0x2" });
     const { result } = renderHook(() => useAccountSetup(), { wrapper: createWrapper() });
     await act(() => result.current.mutateAsync());
-    expect(mockAccount.gaslessSetup).toHaveBeenCalled();
     expect(mockAccount.setup).toHaveBeenCalled();
   });
 });
@@ -59,20 +47,10 @@ describe("useAccountSetup", () => {
 describe("useDeposit", () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it("tries gasless first, succeeds", async () => {
-    mockAccount.gaslessDeposit.mockResolvedValue({ success: true, txHash: "0x1" });
+  it("calls account.deposit with the amount", async () => {
+    mockAccount.deposit.mockResolvedValue({ txHash: "0x1" });
     const { result } = renderHook(() => useDeposit(), { wrapper: createWrapper() });
     await act(() => result.current.mutateAsync(100));
-    expect(mockAccount.gaslessDeposit).toHaveBeenCalledWith(100);
-    expect(mockAccount.deposit).not.toHaveBeenCalled();
-  });
-
-  it("falls back to direct tx when gasless fails", async () => {
-    mockAccount.gaslessDeposit.mockRejectedValue(new Error("relay down"));
-    mockAccount.deposit.mockResolvedValue("0xtxhash");
-    const { result } = renderHook(() => useDeposit(), { wrapper: createWrapper() });
-    await act(() => result.current.mutateAsync(100));
-    expect(mockAccount.gaslessDeposit).toHaveBeenCalledWith(100);
     expect(mockAccount.deposit).toHaveBeenCalledWith(100);
   });
 });

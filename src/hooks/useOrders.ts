@@ -1,6 +1,6 @@
 import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
 import type { OrderList, Order, GetOrdersParams } from "context-markets";
-import { useContextClient } from "../provider.js";
+import { useContextClient, useContextState } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
 
 export function useOrders(
@@ -8,8 +8,14 @@ export function useOrders(
   options?: Omit<UseQueryOptions<OrderList>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address, chain } = useContextState();
+
   return useQuery({
-    queryKey: contextKeys.orders.list(params as Record<string, unknown>),
+    queryKey: contextKeys.orders.list(
+      address,
+      chain,
+      params as Record<string, unknown> | undefined,
+    ),
     queryFn: () => client.orders.list(params),
     ...options,
   });
@@ -20,8 +26,10 @@ export function useOrder(
   options?: Omit<UseQueryOptions<Order>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
+  const { address, chain } = useContextState();
+
   return useQuery({
-    queryKey: contextKeys.orders.get(orderId),
+    queryKey: contextKeys.orders.get(address, chain, orderId),
     queryFn: () => client.orders.get(orderId),
     enabled: !!orderId,
     ...options,

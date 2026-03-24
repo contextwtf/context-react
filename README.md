@@ -74,7 +74,7 @@ function MarketList() {
 
 **Portfolio** — `usePortfolio` · `usePositions` · `useBalance` · `useClaimable` · `usePortfolioStats`
 
-**Account** — `useAccountStatus` · `useAccountSetup` · `useDeposit` · `useWithdraw`
+**Account** — `useAccountStatus` · `useAccountSetup` · `useDeposit` · `useWithdraw` · `useApproveUsdc` · `useApproveOperator`
 
 **Questions** — `useSubmitQuestion` · `useSubmitAndWait` · `useCreateMarket` · `useAgentSubmit` · `useAgentSubmitAndWait`
 
@@ -82,7 +82,7 @@ function MarketList() {
 
 ## Peer Dependencies
 
-`react` >= 18 · `@tanstack/react-query` >= 5 · `wagmi` >= 2 · `viem` >= 2 · `context-markets` >= 0.5
+`react` >= 18 · `@tanstack/react-query` >= 5 · `wagmi` >= 2 · `viem` >= 2 · `context-markets` >= 0.6.0
 
 ## Documentation
 

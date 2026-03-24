@@ -4,7 +4,7 @@ import type {
   ActivityResponse, SimulateResult, SearchMarketsParams,
   MarketSearchParams, MarketSearchResult,
   GetOrderbookParams, GetPriceHistoryParams, GetActivityParams,
-  SimulateTradeParams, OracleQuoteLatest,
+  SimulateTradeParams, OracleQuoteLatest, OracleResponse,
 } from "context-markets";
 import { useContextClient } from "../provider.js";
 import { contextKeys } from "../query-keys.js";
@@ -118,7 +118,7 @@ export function useSimulateTrade(
 
 export function useOracle(
   marketId: string,
-  options?: Omit<UseQueryOptions<any>, "queryKey" | "queryFn">,
+  options?: Omit<UseQueryOptions<OracleResponse>, "queryKey" | "queryFn">,
 ) {
   const client = useContextClient();
   return useQuery({
