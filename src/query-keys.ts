@@ -30,30 +30,61 @@ export const contextKeys = {
   },
   orders: {
     all: (address: string | null = null, chain?: string) =>
-      [PREFIX, "orders", chain, address] as const,
+      chain === undefined
+        ? [PREFIX, "orders", address] as const
+        : [PREFIX, "orders", chain, address] as const,
     list: (address: string | null = null, chain?: string, params?: Record<string, unknown>) =>
-      withParams([PREFIX, "orders", chain, address, "list"] as const, params),
-    get: (address: string | null = null, chain?: string, id?: string) =>
-      [PREFIX, "orders", chain, address, "get", id] as const,
+      withParams(
+        chain === undefined
+          ? [PREFIX, "orders", address, "list"] as const
+          : [PREFIX, "orders", chain, address, "list"] as const,
+        params,
+      ),
+    get: (address: string | null = null, id?: string, chain?: string) =>
+      chain === undefined
+        ? [PREFIX, "orders", address, "get", id] as const
+        : [PREFIX, "orders", chain, address, "get", id] as const,
   },
   portfolio: {
     all: (address: string | null = null, chain?: string) =>
-      [PREFIX, "portfolio", chain, address] as const,
+      chain === undefined
+        ? [PREFIX, "portfolio", address] as const
+        : [PREFIX, "portfolio", chain, address] as const,
     get: (address: string | null = null, chain?: string, params?: Record<string, unknown>) =>
-      withParams([PREFIX, "portfolio", chain, address, "get"] as const, params),
+      withParams(
+        chain === undefined
+          ? [PREFIX, "portfolio", address, "get"] as const
+          : [PREFIX, "portfolio", chain, address, "get"] as const,
+        params,
+      ),
     balance: (address: string | null = null, chain?: string) =>
-      [PREFIX, "portfolio", chain, address, "balance"] as const,
+      chain === undefined
+        ? [PREFIX, "portfolio", address, "balance"] as const
+        : [PREFIX, "portfolio", chain, address, "balance"] as const,
     claimable: (address: string | null = null, chain?: string) =>
-      [PREFIX, "portfolio", chain, address, "claimable"] as const,
+      chain === undefined
+        ? [PREFIX, "portfolio", address, "claimable"] as const
+        : [PREFIX, "portfolio", chain, address, "claimable"] as const,
     stats: (address: string | null = null, chain?: string) =>
-      [PREFIX, "portfolio", chain, address, "stats"] as const,
+      chain === undefined
+        ? [PREFIX, "portfolio", address, "stats"] as const
+        : [PREFIX, "portfolio", chain, address, "stats"] as const,
     positions: (address: string | null = null, chain?: string, params?: Record<string, unknown>) =>
-      withParams([PREFIX, "portfolio", chain, address, "positions"] as const, params),
+      withParams(
+        chain === undefined
+          ? [PREFIX, "portfolio", address, "positions"] as const
+          : [PREFIX, "portfolio", chain, address, "positions"] as const,
+        params,
+      ),
   },
   account: {
     all: (address: string | null = null, chain?: string) =>
-      [PREFIX, "account", chain, address] as const,
+      chain === undefined
+        ? [PREFIX, "account", address] as const
+        : [PREFIX, "account", chain, address] as const,
     status: (address: string | null = null, chain?: string) =>
-      [PREFIX, "account", chain, address, "status"] as const,
+      chain === undefined
+        ? [PREFIX, "account", address, "status"] as const
+        : [PREFIX, "account", chain, address, "status"] as const,
   },
 } as const;

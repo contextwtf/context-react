@@ -29,7 +29,7 @@ export function useOrder(
   const { address, chain } = useContextState();
 
   return useQuery({
-    queryKey: contextKeys.orders.get(address, chain, orderId),
+    queryKey: contextKeys.orders.get(address, orderId, chain),
     queryFn: () => client.orders.get(orderId),
     enabled: !!orderId,
     ...options,

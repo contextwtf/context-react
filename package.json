@@ -1,6 +1,6 @@
 {
   "name": "context-markets-react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React hooks for Context Markets — built on context-markets and TanStack Query",
   "license": "MIT",
   "author": "Context",
